@@ -15,7 +15,7 @@ app.post('/notes', (req, res) => {
   newId += 1
   const note = req.body
   note.id = newId
-  notes.push(req.body)
+  notes.push(note)
   res.sendStatus(201)
 })
 
