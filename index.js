@@ -31,6 +31,18 @@ app.put('/notes/:id', (req, res) => {
   res.sendStatus(200)
 })
 
+app.delete('/notes/:id', (req, res) => {
+  const itemId = parseInt(req.params.id, 10)
+  const itemIndex = notes.findIndex(item => {
+    return item.id === itemId
+  })
+  if (itemIndex === -1) {
+    return res.sendStatus(404)
+  }
+  notes.splice(itemIndex, 1)
+  res.sendStatus(204)
+})
+
 app.listen(3000, () => {
   console.log('Listening on port 3000')
 })
