@@ -19,6 +19,18 @@ app.post('/notes', (req, res) => {
   res.sendStatus(201)
 })
 
+app.put('/notes/:id', (req, res) => {
+  const itemId = parseInt(req.params.id, 10)
+  const item = notes.find(item => {
+    return item.id === itemId
+  })
+  if (!item) {
+    return res.sendStatus(404)
+  }
+  Object.assign(item, req.body)
+  res.sendStatus(200)
+})
+
 app.listen(3000, () => {
   console.log('Listening on port 3000')
 })
